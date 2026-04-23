@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Team Digital Demo
+  site: 'https://adv-demo-web.vercel.app'
   base: '/'
   trailingSlash: false
 
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Team Digital - คอร์สเรียน AI และการตลาดดิจิทัล
+    template: '%s — Team Digital Demo'
+  description: "Team Digital Demo เป็นเว็บไซต์ตัวอย่าง สำหรับใช้คอร์สเรียน Digital Marketing 2026 + AI Tools"
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Team Digital Demo
     images:
       - url: '~/assets/images/default.png'
         width: 1200
@@ -28,7 +28,7 @@ metadata:
     cardType: summary_large_image
 
 i18n:
-  language: en
+  language: th
   textDirection: ltr
 
 apps:
