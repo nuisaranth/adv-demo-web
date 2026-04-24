@@ -8,7 +8,7 @@ export const headerData = {
     { text: 'บทความ', href: getBlogPermalink() },
     { text: 'ติดต่อเรา', href: getPermalink('/contact') },
   ],
-  actions: [{ text: 'สมัครเรียน', href: '#', target: '_blank' }], 
+  actions: [{ text: 'ติดต่อ Line', href: 'https://lin.ee/N97SIEb', target: '_blank' }],
 };
 
 export const footerData = {
