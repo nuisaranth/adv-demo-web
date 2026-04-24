@@ -3,7 +3,7 @@ publishDate: 2026-04-24T00:00:00Z
 author: ศรัณย์ ยุวรรณะ
 title: วิธีตั้งค่า LINE OA สำหรับธุรกิจแบบมือโปร ฉบับอัปเดต 2026
 excerpt: สอนตั้งค่า LINE Official Account ตั้งแต่เริ่มต้น พร้อมเทคนิคเพิ่มยอดขายและดูแลลูกค้าแบบมืออาชีพ เหมาะสำหรับเจ้าของธุรกิจ SME
-image: ~/assets/images/posts/line-oa-setup-guide.jpg
+image: ~/assets/images/posts/line-oa-setup-guide.webp
 category: LINE OA
 tags:
   - line oa
@@ -15,7 +15,7 @@ metadata:
   openGraph:
     type: article
     images:
-      - url: ~/assets/images/posts/line-oa-setup-guide-og.jpg
+      - url: ~/assets/images/posts/line-oa-setup-guide-og.webp
         width: 1200
         height: 630
 ---
