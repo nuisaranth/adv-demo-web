@@ -67,6 +67,7 @@ analytics:
   vendors:
     googleAnalytics:
       id: "G-EDVEL5HMEH" # ✏️ รหัส Google Analytics 4 ของคุณ เช่น G-ABCD1234XY (หาได้ที่ analytics.google.com)
+      partytown: false
 
 ui:
   theme: 'system' # ✏️ ธีมเริ่มต้น: "system" = ตามระบบ | "light" = สว่างเสมอ | "dark" = มืดเสมอ
