@@ -3,14 +3,14 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   // ✏️ เมนูใน Header — แก้ text เพื่อเปลี่ยนชื่อเมนู, แก้ href เพื่อเปลี่ยนลิงก์
   links: [
-    { text: 'หน้าแรก', href: getPermalink('/') },
-    { text: 'สินค้า', href: getPermalink('/products') },
-    { text: 'เกี่ยวกับเรา', href: getPermalink('/about') },
-    { text: 'บทความ', href: getBlogPermalink() },
-    { text: 'ติดต่อเรา', href: getPermalink('/contact') },
+    { text: 'Home', href: getPermalink('/') },
+    { text: 'Products', href: getPermalink('/products') },
+    { text: 'About Us', href: getPermalink('/about') },
+    { text: 'Blog', href: getBlogPermalink() },
+    { text: 'Contact', href: getPermalink('/contact') },
   ],
   // ✏️ ปุ่มด้านขวาสุดของ Header — แก้ text เพื่อเปลี่ยนข้อความ, แก้ href เพื่อเปลี่ยนลิงก์
-  actions: [{ text: 'ติดต่อ Line', href: 'https://lin.ee/N97SIEb', target: '_blank' }],
+  actions: [{ text: 'Contact Line', href: 'https://lin.ee/N97SIEb', target: '_blank' }],
 };
 
 export const footerData = {
