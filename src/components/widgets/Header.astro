@@ -191,18 +191,17 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     if (elTh) elTh.classList.toggle('opacity-40', lang === 'en');
   }
 
-  function init() {
-    const saved = localStorage.getItem(LANG_KEY) ?? 'en';
-    applyLang(saved);
-
-    document.getElementById('toggle-lang')?.addEventListener('click', () => {
-      const current = localStorage.getItem(LANG_KEY) ?? 'en';
-      const next = current === 'en' ? 'th' : 'en';
-      localStorage.setItem(LANG_KEY, next);
-      applyLang(next);
-    });
+  function applyLangFromStorage() {
+    applyLang(localStorage.getItem(LANG_KEY) ?? 'en');
   }
 
-  init();
-  document.addEventListener('astro:page-load', init);
+  document.getElementById('toggle-lang')?.addEventListener('click', () => {
+    const current = localStorage.getItem(LANG_KEY) ?? 'en';
+    const next = current === 'en' ? 'th' : 'en';
+    localStorage.setItem(LANG_KEY, next);
+    applyLang(next);
+  });
+
+  applyLangFromStorage();
+  document.addEventListener('astro:page-load', applyLangFromStorage);
 </script>
