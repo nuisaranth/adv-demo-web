@@ -17,6 +17,7 @@ interface Link {
 }
 
 interface MenuLink extends Link {
+  textTh?: string;
   links?: Array<MenuLink>;
 }
 
@@ -86,7 +87,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xl md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center"
       >
         {
-          links.map(({ text, href, links }) => (
+          links.map(({ text, textTh, href, links }) => (
             <li class={links?.length ? 'dropdown' : ''}>
               {links?.length ? (
                 <>
@@ -94,11 +95,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     type="button"
                     class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
                   >
-                    {text}{' '}
+                    <span data-nav-text data-en={text} data-th={textTh ?? text}>{text}</span>{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
                   </button>
                   <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
-                    {links.map(({ text: text2, href: href2 }) => (
+                    {links.map(({ text: text2, textTh: textTh2, href: href2 }) => (
                       <li>
                         <a
                           class:list={[
@@ -107,7 +108,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                           ]}
                           href={href2}
                         >
-                          {text2}
+                          <span data-nav-text data-en={text2} data-th={textTh2 ?? text2}>{text2}</span>
                         </a>
                       </li>
                     ))}
@@ -121,7 +122,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                   ]}
                   href={href}
                 >
-                  {text}
+                  <span data-nav-text data-en={text} data-th={textTh ?? text}>{text}</span>
                 </a>
               )}
             </li>
@@ -137,6 +138,17 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     >
       <div class="items-center flex justify-between w-full md:w-auto">
         <div class="flex">
+          <button
+            id="toggle-lang"
+            class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center gap-1 font-semibold"
+            aria-label="Toggle language"
+            title="เปลี่ยนภาษา / Change language"
+          >
+            <Icon name="tabler:world" class="w-5 h-5" />
+            <span id="lang-en" class="transition-opacity">EN</span>
+            <span class="opacity-40">/</span>
+            <span id="lang-th" class="opacity-40 transition-opacity">TH</span>
+          </button>
           {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
           {
             showRssFeed && (
@@ -165,3 +177,32 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
 </header>
+
+<script>
+  const LANG_KEY = 'aw-lang';
+
+  function applyLang(lang: string) {
+    document.querySelectorAll<HTMLElement>('[data-nav-text]').forEach((el) => {
+      el.textContent = lang === 'th' ? (el.dataset.th ?? el.dataset.en ?? '') : (el.dataset.en ?? '');
+    });
+    const elEn = document.getElementById('lang-en');
+    const elTh = document.getElementById('lang-th');
+    if (elEn) elEn.classList.toggle('opacity-40', lang === 'th');
+    if (elTh) elTh.classList.toggle('opacity-40', lang === 'en');
+  }
+
+  function init() {
+    const saved = localStorage.getItem(LANG_KEY) ?? 'en';
+    applyLang(saved);
+
+    document.getElementById('toggle-lang')?.addEventListener('click', () => {
+      const current = localStorage.getItem(LANG_KEY) ?? 'en';
+      const next = current === 'en' ? 'th' : 'en';
+      localStorage.setItem(LANG_KEY, next);
+      applyLang(next);
+    });
+  }
+
+  init();
+  document.addEventListener('astro:page-load', init);
+</script>
